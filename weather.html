@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>模擬天氣查詢工具</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .weather-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 300px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .weather-card h2 {
+      margin-bottom: 10px;
+      color: #0077b6;
+    }
+
+    .weather-info {
+      font-size: 18px;
+      color: #555;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f8e;
+    }
+  </style>
+</head>
+<body>
+  <h1>天氣查詢工具</h1>
+  <div>
+    <input type="text" id="cityInput" placeholder="請輸入城市名稱">
+    <button onclick="generateWeather()">查詢</button>
+  </div>
+
+  <div id="weatherCard" class="weather-card" style="display:none;">
+    <h2 id="cityName"></h2>
+    <div class="weather-info" id="weatherCondition"></div>
+    <div class="weather-info" id="temperature"></div>
+    <div class="weather-info" id="humidity"></div>
+  </div>
+
+  <script>
+    function generateWeather() {
+      const city = document.getElementById("cityInput").value.trim();
+      if (!city) return;
+
+      const conditions = ["☀️ 晴天", "⛅ 多雲", "🌧️ 小雨", "🌩️ 雷陣雨", "🌫️ 霧"];
+      const temp = Math.floor(Math.random() * 15) + 15; // 15°C ~ 30°C
+      const humidity = Math.floor(Math.random() * 50) + 30; // 30% ~ 80%
+
+      document.getElementById("cityName").textContent = city;
+      document.getElementById("weatherCondition").textContent = "天氣狀況：" + conditions[Math.floor(Math.random() * conditions.length)];
+      document.getElementById("temperature").textContent = "溫度：" + temp + "°C";
+      document.getElementById("humidity").textContent = "濕度：" + humidity + "%";
+
+      document.getElementById("weatherCard").style.display = "block";
+    }
+  </script>
+</body>
+</html>
